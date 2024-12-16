@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.usdb.cs.karousti.auth.AuthenticationResponse;
-import edu.usdb.cs.karousti.auth.requests.CarRegistrationRequest;
+import edu.usdb.cs.karousti.car.requests.CarRegistrationRequest;
 import edu.usdb.cs.karousti.car.services.CarService;
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package edu.usdb.cs.karousti.auth.requests;
+package edu.usdb.cs.karousti.car.requests;
 
 import edu.usdb.cs.karousti.enums.Availability;
 import edu.usdb.cs.karousti.enums.Color;

@@ -34,6 +34,7 @@ public abstract class User implements UserDetails {
     private String lastName;
 
     @Column(nullable = false, unique = true)
+    @jakarta.validation.constraints.Email //pour que la syntaxe de l'email soit verifier
     private String email;
 
     @Column

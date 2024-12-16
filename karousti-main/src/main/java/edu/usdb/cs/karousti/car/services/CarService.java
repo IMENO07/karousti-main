@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import edu.usdb.cs.karousti.auth.AuthenticationResponse;
-import edu.usdb.cs.karousti.auth.requests.CarRegistrationRequest;
 import edu.usdb.cs.karousti.car.Car;
 import edu.usdb.cs.karousti.car.CarRepository;
+import edu.usdb.cs.karousti.car.requests.CarRegistrationRequest;
 
 @Service
 public class CarService {
