@@ -19,7 +19,7 @@ public class Admin extends User {
     private final String ROLE = "ADMIN";
 
     @Override
-    protected String getRole() {
+    protected String hasRole() {
         return ROLE;
     }
 

@@ -1,4 +1,4 @@
-package edu.usdb.cs.karousti.test_session;
+package edu.usdb.cs.karousti.testsession;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

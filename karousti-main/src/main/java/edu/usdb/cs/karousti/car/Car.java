@@ -1,13 +1,12 @@
 package edu.usdb.cs.karousti.car;
 
+import edu.usdb.cs.karousti.brand.Brand;
 import edu.usdb.cs.karousti.enums.Availability;
 import edu.usdb.cs.karousti.enums.Color;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import edu.usdb.cs.karousti.model.Model;
+import jakarta.persistence.*;
 // import jakarta.persistence.EnumType;
 // import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,17 +17,14 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
 public class Car {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "model", nullable = false)
-    private String model;
-
-    @Column(name = "brand", nullable = false)
-    private String brand;
+    @ManyToOne
+    @JoinColumn(name = "model_id", nullable = false)
+    private Model model;
 
     @Column(name = "price", nullable = false)
     private Float price;

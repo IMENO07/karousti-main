@@ -1,14 +1,12 @@
-package edu.usdb.cs.karousti.test_session;
+package edu.usdb.cs.karousti.testsession;
 
 import java.sql.Date;
 import java.sql.Time;
 
+import edu.usdb.cs.karousti.car.Car;
 import edu.usdb.cs.karousti.enums.TestStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import edu.usdb.cs.karousti.user.customer.Customer;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,15 +23,15 @@ public class Test {
     private Integer id;
 
     @ManyToOne
-    @Column(name = "user_id", nullable = false)
-    private String user_id;
+    @JoinColumn(name = "user_id", nullable = false)
+    private Customer userId;
 
     @ManyToOne
-    @Column(name = "car_id", nullable = false)
-    private String car_id;
+    @JoinColumn(name = "car_id", nullable = false)
+    private Car carId;
 
     // @Enumerated(EnumType.STRING)
-    @Column(name = "Status", nullable = false)
+    @Column(name = "status", nullable = false)
     private TestStatus status;
 
     @Column(name = "date", nullable = false)

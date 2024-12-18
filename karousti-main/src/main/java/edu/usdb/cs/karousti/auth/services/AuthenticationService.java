@@ -35,11 +35,11 @@ public class AuthenticationService {
 	}
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletResponse response) {
-		UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(request.getEmail(),
+		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(request.getEmail(),
 				request.getPassword());
 
 		try {
-			authenticationManager.authenticate(upat);
+			authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 		} catch (AuthenticationException ex) {
 			throw new RuntimeException("Authentication failed: " + ex.getMessage());
 		}
@@ -55,18 +55,14 @@ public class AuthenticationService {
 		var user = (admin != null) ? admin : (customer != null) ? customer : agent;
 		var jwtToken = jwtService.generateToken(user);
 
-		// Create the cookie with JWT token
 		Cookie jwtCookie = new Cookie("jwt", jwtToken);
-		jwtCookie.setHttpOnly(true); // Prevent JavaScript access to the cookie
-		jwtCookie.setSecure(true); // Ensure the cookie is sent only over HTTPS
-		jwtCookie.setPath("/"); // Make the cookie available to the entire domain
-		jwtCookie.setMaxAge(24 * 60 * 60); // Set cookie expiration to 1 day (adjust as needed)
+		jwtCookie.setHttpOnly(true);
+		jwtCookie.setSecure(true);
+		jwtCookie.setPath("/");
+		jwtCookie.setMaxAge(24 * 60 * 60);
 
-		// Add the cookie to the response
 		response.addCookie(jwtCookie);
 
-		// Return only the AuthenticationResponse object (optionally including the token
-		// if you need it in the response body)
 		return AuthenticationResponse.builder()
 				.token(jwtToken)
 				.build();

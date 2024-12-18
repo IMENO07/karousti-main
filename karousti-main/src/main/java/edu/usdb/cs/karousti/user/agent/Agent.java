@@ -19,7 +19,7 @@ public class Agent extends User {
     private final String ROLE = "AGENT";
 
     @Override
-    protected String getRole() {
+    protected String hasRole() {
         return ROLE;
     }
 }

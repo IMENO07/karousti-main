@@ -16,6 +16,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Cookie;
+
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -31,18 +32,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        // Step 1: Check for Authorization header
+        final String requestURI = request.getRequestURI();
+
+        // Step 1: Bypass JWT filter for public endpoints
+        if (isPublicEndpoint(requestURI)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // Step 2: Check for Authorization header
         final String authHeader = request.getHeader("Authorization");
         String jwt = null;
         String userEmail = null;
 
-        // If Authorization header is present
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             jwt = authHeader.substring(7);
             userEmail = jwtService.extractUsername(jwt);
         }
 
-        // Step 2: If Authorization header is not present, check cookies
+        // Step 3: If JWT not found in header, check cookies
         if (jwt == null) {
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
@@ -56,7 +64,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
-        // Step 3: If we have a valid JWT and the user is not already authenticated
+        // Step 4: Validate JWT and set authentication context
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
             if (jwtService.isTokenValid(jwt, userDetails)) {
@@ -69,5 +77,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Continue the filter chain
         filterChain.doFilter(request, response);
+    }
+
+    /**
+     * Determines if the request URI matches public endpoints.
+     */
+    private boolean isPublicEndpoint(String uri) {
+        return uri.startsWith("/api/v1/auth/");
     }
 }

@@ -1,4 +1,4 @@
-package edu.usdb.cs.karousti.test_session.responses;
+package edu.usdb.cs.karousti.testsession.responses;
 
 public class TestCreationResponse {
     

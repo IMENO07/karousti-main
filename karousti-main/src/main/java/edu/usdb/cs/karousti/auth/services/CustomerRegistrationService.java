@@ -28,7 +28,7 @@ public class CustomerRegistrationService {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword())) // Encode the password
+                .password(passwordEncoder.encode(request.getPassword()))
                 .build();
 
         customerRepository.save(customer);

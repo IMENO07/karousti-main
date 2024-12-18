@@ -15,3 +15,14 @@ spring:
                 "[format_sql]": true
         database: mysql
         database-platform: org.hibernate.dialect.MySQLDialect
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: karoustiapp@gmail.com
+        password: karoustiapp01012000
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true

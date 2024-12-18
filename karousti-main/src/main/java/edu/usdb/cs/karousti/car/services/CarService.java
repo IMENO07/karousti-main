@@ -29,7 +29,7 @@ public class CarService {
         return carRepository.findByBrand(brand).orElse(null);
     }
 
-    public AuthenticationResponse addcar(CarRegistrationRequest request) {
+    public AuthenticationResponse addCar(CarRegistrationRequest request) {
         Car car = Car.builder()
                 .model(request.getModel())
                 .brand(request.getBrand())

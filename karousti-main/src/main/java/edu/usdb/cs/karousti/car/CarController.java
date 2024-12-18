@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequiredArgsConstructor
 public class CarController {
+
     private final CarService carService;
 
     @PostMapping("/addCar")
     public ResponseEntity<AuthenticationResponse> addCar(@RequestBody CarRegistrationRequest request) {
-        return ResponseEntity.ok(carService.addcar(request));
+        return ResponseEntity.ok(carService.addCar(request));
     }
 
     @DeleteMapping("/deleteCar")

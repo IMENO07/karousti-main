@@ -1,10 +1,10 @@
-package edu.usdb.cs.karousti.test_session;
+package edu.usdb.cs.karousti.testsession;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.usdb.cs.karousti.test_session.requests.TestCreationRequest;
-import edu.usdb.cs.karousti.test_session.responses.TestCreationResponse;
+import edu.usdb.cs.karousti.testsession.requests.TestCreationRequest;
+import edu.usdb.cs.karousti.testsession.responses.TestCreationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

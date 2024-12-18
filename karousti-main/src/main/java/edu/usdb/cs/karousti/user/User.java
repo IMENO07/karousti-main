@@ -34,7 +34,7 @@ public abstract class User implements UserDetails {
     private String lastName;
 
     @Column(nullable = false, unique = true)
-    @jakarta.validation.constraints.Email //pour que la syntaxe de l'email soit verifier
+    @jakarta.validation.constraints.Email
     private String email;
 
     @Column
@@ -45,10 +45,10 @@ public abstract class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(getRole()));
+        return List.of(new SimpleGrantedAuthority(hasRole()));
     }
 
-    protected abstract String getRole();
+    protected abstract String hasRole();
 
     @Override
     public String getUsername() {

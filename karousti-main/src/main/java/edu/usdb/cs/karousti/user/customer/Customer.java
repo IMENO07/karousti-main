@@ -19,7 +19,7 @@ public class Customer extends User {
     private Integer numberOfOrders;
 
     @Override
-    protected String getRole() {
+    protected String hasRole() {
         return ROLE;
     }
 

@@ -1,4 +1,4 @@
-package edu.usdb.cs.karousti.test_session.requests;
+package edu.usdb.cs.karousti.testsession.requests;
 
 import java.sql.Date;
 import java.sql.Time;
